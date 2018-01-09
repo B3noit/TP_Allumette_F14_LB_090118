@@ -1,0 +1,86 @@
+ALGO : Jeux_Des_Allumettes_JvsIA
+
+
+//BUT : Jeux d'allumette où l'on retire des allumettes les unes après les autres, il faut absolument retirer la dèrnière allumette pour gagner.
+
+//Principe : On a la valeur initiale du tas d'allumette(21), le joueur alterne avec la machine dans une boucle répéter pour retirer 1,2 ou 3 allumettes, 
+			si le joueur retire l'allumettes en dernier, il gagne sinon, il perds.
+
+//ENTREES : le nombre d'allumettes à soustraire.
+
+//SORTIES : Le nombre d'allumettes restantes et le détenteurs de la victoire.
+
+
+
+CONST
+gagne <- 0 
+min <- 1
+max <- 3
+
+
+
+VAR
+
+
+///////////////////
+PROCEDURE ALLUMETTE
+
+VAR 
+nballumette,soustraction,alea : ENTIER
+
+DEBUT
+	
+nballumette <- 21
+soustraction <- 0
+alea <- 0
+ 
+	ECRIRE "Les règles : il y a 21 allumettes,on peut en retirer 1,2 ou 3 à chaque tour, pour gagner il faut prendre la dernière allumette !"
+
+	REPETER
+		ECRIRE "Il reste " & nballumette & " allumettes, combien d'allumettes souhaitez vous retirez ?"
+		LIRE soustraction
+		VERIFICATION (soustraction) // procédure de vérification
+		nballumette <- nballumette - soustraction
+		
+		SI (nballumette <gagne)ALORS
+			ECRIRE "GG t'as gagner"
+		FINSI
+		
+		ECRIRE "Au tour de la machine."
+		(alea) //La machine séléctionne aléatoirement un nombre compris entre 1 et 3
+		VERIFICATION (alea)
+		nballumette-(alea)
+		
+		SI (nballumette <gagne)ALORS
+		ECRIRE "La machine l'emporte!"
+		FINSI
+
+	JUSQU'A (nballumette <= perdu)
+
+
+
+FIN PROCEDURE
+
+
+
+////////////////////////////////////////
+PROCEDURE VERIFICATION (verif : entier)
+
+DEBUT
+
+TANTQUE (verif < min OU verif > max) FAIRE
+ECRIRE verif & " n'est pas un nombre valide, vous pouvez retirer soit 1,2 ou 3 allumettes. Recommencez."
+LIRE verif
+FINTANTQUE
+
+FIN PROCEDURE
+
+
+ 
+
+
+DEBUT 
+
+ALLUMETTE
+
+FIN

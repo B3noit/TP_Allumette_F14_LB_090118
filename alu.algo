@@ -1,0 +1,76 @@
+ALGO : Jeux Des Allumettes
+
+
+//BUT : Jeux d'allumette où l'on retire des allumettes les unes après les autres, il ne faut absolument pas retirer la dèrnière allumette pour gagner.
+
+//Principe : On a la valeur initiale du tas d'allumette(21), puis on demande à tour de rôle aux deux joueurs de soustraire 1,2 ou 3.
+
+//ENTREES : le nombre d'allumettes à soustraire.
+
+//SORTIES : Le nombre d'allumettes restantes et le détenteurs de la victoire.
+
+
+
+CONSTANTES
+perdu <- 0 
+
+
+VARIABLES
+
+
+PROCEDURE ALLUMETTE
+
+VAR 
+nballumette,soustraction,joueur : ENTIER
+
+DEBUT
+	
+nballumette <- 21
+soustraction <- 0
+numero <-1
+ 
+	ECRIRE "Les règles"
+
+	REPETER
+		ECRIRE "Joueur" & numero & ", il reste " & nballumette & " allumettes, combien d'allumettes souhaitez vous retirez ?"
+		LIRE soustraction
+		VERIFICATION (soustraction) // procédure de vérification
+		nballumette <- nballumette - soustraction
+		Si (numero = 1) Alors
+			numero <--2
+		Sinon numero <- 1
+		Fin SI
+
+
+	Jusqu'à (nballumette <= perdu)
+Si (numero = 1) Alors
+	ECRIRE "Joueur1 a perdu, Joueur2 l'emporte.
+Sinon ECRIRE "Joueur2 a perdu, Joueur1 l'emporte."
+
+FIN PROCEDURE
+
+
+
+
+PROCEDURE VERIFICATION (verif : entier)
+
+
+DEBUT
+
+TANT QUE (verif < 1 OU verif > 3) FAIRE
+ECRIRE verif & " n'est pas un nombre valable, vous pouvez retirer soit 1,2 ou 3 allumettes. Recommencez."
+LIRE verif
+FIN TANT QUE
+
+FIN PROCEDURE
+
+
+
+
+
+
+
+
+
+
+
